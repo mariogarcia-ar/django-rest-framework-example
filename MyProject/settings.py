@@ -25,7 +25,7 @@ SECRET_KEY = 'xj*1x%p)$(hfx)u$)d%a0xaa%gu)mg+ae)z-hk&42u8^t8kaa_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -123,3 +123,58 @@ STATIC_URL = '/static/'
 
 MEDIA_URL =  '/media/'
 MEDIA_ROOT = BASE_DIR / 'media' # os.path.join(BASE_DIR, "media")
+DATA_UPLOAD_MAX_MEMORY_SIZE = 1024*1024*20 # 20MB
+APPEND_SLASH=False
+# USE_X_FORWARDED_HOST=True
+
+# LOG_PATH = BASE_DIR / "/log"
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'standard': {
+            'format': '%(asctime)s [%(levelname)s]- %(message)s'}
+
+    },
+    'handlers': {
+        'django_error': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': 'log/django.log',
+            'formatter': 'standard'
+        },
+        'info': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': 'log/info.log',
+            'formatter': 'standard'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'standard'
+        }
+    },
+    'loggers': {
+        'info': {
+            'handlers': ['info', "console"],
+            'level': 'DEBUG',
+            'propagate': True
+        },
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['django_error', 'console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': True,
+        }
+    },
+}     

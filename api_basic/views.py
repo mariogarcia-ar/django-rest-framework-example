@@ -2,6 +2,7 @@ from .models import Document
 from .serializers import DocumentSerializer
 from rest_framework import generics
 from rest_framework import mixins
+# import logging
 
 
 
@@ -22,6 +23,8 @@ class GenericAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.Crea
            return self.list(request)
 
     def post(self, request):
+        # logger = logging.getLogger("info")
+        # logger.info(request.body)
         return self.create(request)
 
     def put(self, request, id=None):
