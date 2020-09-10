@@ -1,13 +1,13 @@
 from rest_framework import serializers
-from .models import Article
+from .models import Document
 
 
-class ArticleSerializer(serializers.ModelSerializer):
+class DocumentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Article
-        fields = ['id', 'title', 'author']
+        model = Document
+        fields = ['id', 'name', 'file']
 
-# class ArticleSerializer(serializers.Serializer):
+# class DocumentSerializer(serializers.Serializer):
 #     title = serializers.CharField(max_length=100)
 #     author = serializers.CharField(max_length=100)
 #     email = serializers.EmailField(max_length=100)
@@ -17,13 +17,13 @@ class ArticleSerializer(serializers.ModelSerializer):
 
 #     def create(self, validated_data):
 
-#         # Create and return a new `Article` instance, given the validated data.
-#         return Article.objects.create(validated_data)
+#         # Create and return a new `Document` instance, given the validated data.
+#         return Document.objects.create(validated_data)
 
 
 #     def update(self, instance, validated_data):
 
-#         #Update and return an existing `Article` instance, given the validated data.
+#         #Update and return an existing `Document` instance, given the validated data.
 
 #         instance.title = validated_data.get('title', instance.title)
 #         instance.author = validated_data.get('author', instance.author)

@@ -1,5 +1,5 @@
-from .models import Article
-from .serializers import ArticleSerializer
+from .models import Document
+from .serializers import DocumentSerializer
 from rest_framework import generics
 from rest_framework import mixins
 
@@ -8,14 +8,13 @@ from rest_framework import mixins
 class GenericAPIView(generics.GenericAPIView, mixins.ListModelMixin, mixins.CreateModelMixin,
                      mixins.UpdateModelMixin, mixins.RetrieveModelMixin,
                      mixins.DestroyModelMixin):
-    serializer_class = ArticleSerializer
-    queryset = Article.objects.all()
+    serializer_class = DocumentSerializer
+    queryset = Document.objects.all()
     lookup_field = 'id'
 
   
 
     def get(self, request, id = None):
-
         if id:
             return self.retrieve(request)
 
